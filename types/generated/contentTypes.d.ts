@@ -362,42 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiProjectProject extends Schema.CollectionType {
-  collectionName: 'projects';
-  info: {
-    singularName: 'project';
-    pluralName: 'projects';
-    displayName: 'project';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    project_title: Attribute.String;
-    project_description: Attribute.Text;
-    project_architect: Attribute.String;
-    project_full_description: Attribute.Blocks;
-    project_client: Attribute.String;
-    project_location: Attribute.String;
-    project_images: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::project.project',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::project.project',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -824,6 +788,72 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiGalleryGallery extends Schema.CollectionType {
+  collectionName: 'galleries';
+  info: {
+    singularName: 'gallery';
+    pluralName: 'galleries';
+    displayName: 'Gallery';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    images: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gallery.gallery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gallery.gallery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProjectProject extends Schema.CollectionType {
+  collectionName: 'projects';
+  info: {
+    singularName: 'project';
+    pluralName: 'projects';
+    displayName: 'project';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    project_title: Attribute.String;
+    project_description: Attribute.Text;
+    project_architect: Attribute.String;
+    project_full_description: Attribute.Blocks;
+    project_client: Attribute.String;
+    project_location: Attribute.String;
+    project_images: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -834,7 +864,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::project.project': ApiProjectProject;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -843,6 +872,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::gallery.gallery': ApiGalleryGallery;
+      'api::project.project': ApiProjectProject;
     }
   }
 }
